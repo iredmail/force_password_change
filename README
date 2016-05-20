@@ -24,7 +24,7 @@
     * Add force_password_change to $config['plugins'] in your Roundcube config
 
     NB: When downloading the plugin from bitbucket you will need to create a
-    directory called zipdownload and place the files in there, ignoring the
+    directory called force_password_change and place the files in there, ignoring the
     root directory in the downloaded archive
 
 
@@ -56,3 +56,30 @@
     -----------------------------------
     It's for LDAP backend of iRedmail.
     It uses directly PHP's ldap module functions without the Net_LDAP2 PEAR extension.
+	
+-----------------------------------------------------------------------
+ Force password change RC插件，iRedmail专用
+ (www.iredmail.org，一套优秀知名的免费、开源邮件服务解决方案)
+ -----------------------------------------------------------------------
+ 在启用本插件后，当用户登录RC网页邮件时，会检查用户最后一次修改密码
+ 时间，如超过系统定义周期，则会锁定所有操作强制跳转至密码修改页面。
+ -----------------------------------------------------------------------
+
+ 1. 安装
+ 2. 配置
+
+ 1. 安装
+ ----------------
+    * 将插件程序目录复制到RC的插件目录
+    * 在RC配置文件中，添加force_password_change到参数$config['plugins']以启用插件
+
+    注意： 当从bitbucket发布站点下载时，请本地建一个名为force_password_change目录，将
+	压缩包中的文件放入其中即可。
+
+
+ 2. 配置
+ ----------------
+
+    复制config.inc.php.dist为config.inc.php，然后根据文中说明修改参数即可。
+    
+    注意：本插件依赖password插件，请务必先启用。	
