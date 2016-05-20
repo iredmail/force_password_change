@@ -1,0 +1,24 @@
+{
+    "name": "roundcube/force_password_change",
+    "type": "roundcube-plugin",
+    "description": "When user is login, this plugin checks the last change password date and sets a session flag in case it is incomplete. An overlay box will appear on the screen until the user has completed change.",
+    "license": "GPLv3+",
+    "version": "1.0",
+    "authors": [
+        {
+            "name": "WAINLAKE",
+            "email": "michael@wainlake.com",
+            "role": "Lead"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://plugins.roundcube.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "roundcube/plugin-installer": ">=0.1.3"
+    }
+}

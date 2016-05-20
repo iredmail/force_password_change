@@ -1,0 +1,58 @@
+ -----------------------------------------------------------------------
+ Force password change plugin for Roundcube on iRedmail
+ (www.iredmail.org, a famous mail server solution)
+ -----------------------------------------------------------------------
+ Plugin will automatically redirect to the password changing page if the 
+ passoword is not changed over the user_defined time period.
+ -----------------------------------------------------------------------
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ @version @package_version@
+ @author WAINLAKE <michael@wainlake.com>
+ -----------------------------------------------------------------------
+
+ 1. Install
+ 2. Configuration
+ 3. Drivers
+
+ 1. Install
+ ----------------
+    * Place this plugin folder into plugins directory of Roundcube
+    * Add force_password_change to $config['plugins'] in your Roundcube config
+
+    NB: When downloading the plugin from bitbucket you will need to create a
+    directory called zipdownload and place the files in there, ignoring the
+    root directory in the downloaded archive
+
+
+ 2. Configuration
+ ----------------
+
+    Copy config.inc.php.dist to config.inc.php and set the options as described
+    within the file.
+    
+    NB: It depends the "password" plugin, you must enable it first.
+
+	 
+ 3. Drivers
+ ----------------
+    It's only support below 3 type drivers for iRedmail mail server.
+
+    3.1  Database (sql)
+    -------------------
+    It's for MySQL/MariaDB or PgSQL backend of iRedmail.
+
+
+    3.2  LDAP (ldap)
+    ----------------
+    It's for LDAP backend of iRedmail.
+    Requires PEAR::Net_LDAP2 package.
+
+
+    3.3 LDAP - no PEAR (ldap_simple)
+    -----------------------------------
+    It's for LDAP backend of iRedmail.
+    It uses directly PHP's ldap module functions without the Net_LDAP2 PEAR extension.

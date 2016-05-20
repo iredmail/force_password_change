@@ -1,0 +1,41 @@
+/** Styles for the new-user-dialog box */
+
+#forcepwdchg {
+	display: none;
+}
+
+#forcepwdchg h3 {
+	color: #333;
+	font-size: normal;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#forcepwdchg p.hint {
+	margin-top: 0.5em;
+	margin-bottom: 1em;
+	//font-style: italic;
+    text-align: center;
+}
+#forcepwdchg p.go {
+}
+#forcepwdchg table td.title {
+	color: #666;
+	text-align: left;
+	padding-right: 1em;
+	//white-space: nowrap;
+}
+
+#forcepwdchg table td input,
+#forcepwdchg table td textarea {
+	width: 20em;
+}
+
+#forcepwdchg .formbuttons {
+	margin-top: 1.5em;
+	text-align: center;
+}
+
+.ui-dialog-titlebar-close {
+	display: none;
+}
