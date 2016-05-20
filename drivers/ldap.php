@@ -1,9 +1,11 @@
 <?php
-
 /**
  * Ldap Driver
  *
  * Driver for force password change what stored in LDAP database
+ *
+ * NB: It need a attribute named 'shadowLastChange' to store the last
+ * changed date. For some mail solution(eg. iRedmail) provided yet.
  *
  * @version 1.0
  * @author WAINLAKE <michael@wainlake.com>

@@ -1,9 +1,12 @@
 <?php
-
 /**
  * SQL Driver
  *
  * Driver for force password change what stored in SQL database
+ *
+ * NB: It need a column in user table to store the last changed date.
+ * It's named 'passwordlastchange' in user table 'vmail.mailbox' on iRdemail.
+ * You can manually modify below SQL command for your requirement.
  *
  * @version 1.0
  * @author WAINLAKE <michael@wainlake.com>
