@@ -1,6 +1,5 @@
- -----------------------------------------------------------------------
- Force password change plugin for Roundcube on iRedmail
- (www.iredmail.org, a famous mail server solution)
+-----------------------------------------------------------------------
+ Force password change plugin for Roundcube 
  -----------------------------------------------------------------------
  Plugin will automatically redirect to the password changing page if the 
  passoword is not changed over the user_defined time period.
@@ -82,4 +81,4 @@
 
     复制config.inc.php.dist为config.inc.php，然后根据文中说明修改参数即可。
     
-    注意：本插件依赖password插件，请务必先启用。	
+    注意：本插件依赖password插件，请务必先启用。
