@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------
  Force password change plugin for Roundcube on iRedmail
- (of course you can migrate to some other mail system :-) )
+ (of course you can migrate it to some others mail system :-) )
  -----------------------------------------------------------------------
  Plugin will automatically redirect to the password changing page if the 
  passoword is not changed over the user_defined time period.
