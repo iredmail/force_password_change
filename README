@@ -1,5 +1,6 @@
 -----------------------------------------------------------------------
- Force password change plugin for Roundcube 
+ Force password change plugin for Roundcube on iRedmail
+ (of course you can migrate to some other mail system :-) )
  -----------------------------------------------------------------------
  Plugin will automatically redirect to the password changing page if the 
  passoword is not changed over the user_defined time period.
@@ -35,7 +36,7 @@
     
     NB: It depends the "password" plugin, you must enable it first.
 
-	 
+	
  3. Drivers
  ----------------
     It's only support below 3 type drivers for iRedmail mail server.
@@ -57,8 +58,7 @@
     It uses directly PHP's ldap module functions without the Net_LDAP2 PEAR extension.
 	
 -----------------------------------------------------------------------
- Force password change RC插件，iRedmail专用
- (www.iredmail.org，一套优秀知名的免费、开源邮件服务解决方案)
+ Force password change RC插件，基于iRedmail
  -----------------------------------------------------------------------
  在启用本插件后，当用户登录RC网页邮件时，会检查用户最后一次修改密码
  时间，如超过系统定义周期，则会锁定所有操作强制跳转至密码修改页面。
