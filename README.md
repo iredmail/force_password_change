@@ -1,84 +1,106 @@
------------------------------------------------------------------------
- Force password change plugin for Roundcube on iRedmail
- (of course you can migrate it to some others mail system :-) )
- -----------------------------------------------------------------------
- Plugin will automatically redirect to the password changing page if the 
- passoword is not changed over the user_defined time period.
- -----------------------------------------------------------------------
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
+# Roundcube plugin: Force password change.
 
- @version @package_version@
- @author WAINLAKE <michael@wainlake.com>
- -----------------------------------------------------------------------
+This plugin is designed for Roundcube webmail. Current version works for
+iRedMail only (check details below, it's possible to tweak it to work with
+your own Roundcube webmail setup).
 
- 1. Install
- 2. Configuration
- 3. Drivers
+## License
 
- 1. Install
- ----------------
-    * Place this plugin folder into plugins directory of Roundcube
-    * Add force_password_change to $config['plugins'] in your Roundcube config
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    NB: When downloading the plugin from bitbucket you will need to create a
-    directory called force_password_change and place the files in there, ignoring the
-    root directory in the downloaded archive
+@version @package_version@
+@author WAINLAKE <michael@wainlake.com>
 
+## How it works
 
- 2. Configuration
- ----------------
+Each time user changed password, Roundcube will update user's password and
+the last password change date in SQL database or LDAP.
 
-    Copy config.inc.php.dist to config.inc.php and set the options as described
-    within the file.
-    
-    NB: It depends the "password" plugin, you must enable it first.
+* For MySQL, MariaDB, PostgreSQL backends: Roundcube is configured to:
+    * update new password in SQL database `vmail`, column `mailbox.password`.
+    * update password change date in column `mailbox.passwordlastchange`.
+* For OpenLDAP or OpenBSD ldapd(8) servers: Roundcube is configured to:
+    * update new password in attribute `userPassword` of user object
+    * update password change date in attribute `shadowLastChange` (days since
+      Jun 1, 1970).
 
-	
- 3. Drivers
- ----------------
-    It's only support below 3 type drivers for iRedmail mail server.
+Each time user login to Roundcube webmail, Roundcube will query the password
+last change date, if the password hasn't been changed for `90` days
+(configurable in plugin config file `config.inc.php`, parameter
+`force_password_change_interval`), Roundcube will __ALWAYS__ redirect user to
+`Password` page (offered by official Roundcube plugin `password`) until user
+changed the password.
 
-    3.1  Database (sql)
-    -------------------
-    It's for MySQL/MariaDB or PgSQL backend of iRedmail.
+## Install and Configuration
 
+### Install
 
-    3.2  LDAP (ldap)
-    ----------------
-    It's for LDAP backend of iRedmail.
-    Requires PEAR::Net_LDAP2 package.
+* Copy this plugin folder to the `plugins/` directory inside Roundcube.
+* Enable plugin `force_password_change` in Roundcube config file
+  `config/config.inc.php`, parameter `$config['plugins'] =`.
 
+__WARNING__: This plugin relies on official `password` plugin, so please make
+sure it's enabled too.
 
-    3.3 LDAP - no PEAR (ldap_simple)
-    -----------------------------------
-    It's for LDAP backend of iRedmail.
-    It uses directly PHP's ldap module functions without the Net_LDAP2 PEAR extension.
-	
------------------------------------------------------------------------
- Force password change RC插件，基于iRedmail
- -----------------------------------------------------------------------
- 在启用本插件后，当用户登录RC网页邮件时，会检查用户最后一次修改密码
- 时间，如超过系统定义周期，则会锁定所有操作强制跳转至密码修改页面。
- -----------------------------------------------------------------------
+### Configuration
 
- 1. 安装
- 2. 配置
+Copy `config.inc.php.dist` to `config.inc.php`, update `config.inc.php` to
+match your needs.
 
- 1. 安装
- ----------------
-    * 将插件程序目录复制到RC的插件目录
-    * 在RC配置文件中，添加force_password_change到参数$config['plugins']以启用插件
+### Password Drivers
 
-    注意： 当从bitbucket发布站点下载时，请本地建一个名为force_password_change目录，将
-	压缩包中的文件放入其中即可。
+Password drivers are used to query password last change date. Currently, only 3
+drivers are supported.
+
+#### Database (sql)
+
+For MySQL, MariaDB, PostgreSQL backends.
+
+#### LDAP (ldap)
+
+For OpenLDAP or OpenBSD ldapd(8) servers.
+
+This driver requires PEAR::Net_LDAP2 package.
+
+#### LDAP (ldap_simple) - no PEAR package required
+
+For OpenLDAP or OpenBSD ldapd(8) servers.
+
+It uses PHP's ldap module functions without the Net_LDAP2 PEAR extension.
 
 
- 2. 配置
- ----------------
+# Roundcube插件：定期强制修改邮箱密码。
 
-    复制config.inc.php.dist为config.inc.php，然后根据文中说明修改参数即可。
-    
-    注意：本插件依赖password插件，请务必先启用。
+本插件当前默认用于iRedmail邮件系统，如有需要用于其他邮件系统，可参考
+以下内容自行修改你的Roundcube设置使用。
+
+## 工作原理
+
+每次用户通过Roundcube修改邮箱密码，系统都会在SQL或LDAP记录本次修改密码时间。
+
+* SQL版本，包括MySQL、MariaDB、PostgreSQL：
+    * 在数据库 `vmail`中`mailbox.password`栏位记录用户密码；
+    * 在栏位 `mailbox.passwordlastchange`记录用户修改密码时间。
+* LDAP版本，包括OpenLDAP or OpenBSD ldapd(8) 服务器：
+    * 在user对象中属性栏位 `userPassword` 记录用户密码；
+    * 在属性栏位 `shadowLastChange`用户修改密码时间 (距1970/6/1的天数)。
+
+当用户登录Roundcube网页邮箱时，会检查用户最后一次修改密码时间，如超过系统设定
+周期(通过插件参数文件 `config.inc.php`中参数`force_password_change_interval`定
+义)，则会中断所有操作强制跳转至密码修改页面。
+
+## 安装配置
+
+### 安装
+
+* 将插件程序目录复制到Roundcube插件目录`plugins/`。
+* 修改Roundcube配置文件`config/config.inc.php`中参数`$config['plugins'] =`，添加 'force_password_change' 启用插件。
+
+__提醒__: 本插件需依赖于系统自带 `password` 插件，请务必同时启用。
+
+### 配置
+
+复制config.inc.php.dist为config.inc.php，然后根据需要修改参数即可。
