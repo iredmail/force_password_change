@@ -97,10 +97,10 @@ It uses PHP's ldap module functions without the Net_LDAP2 PEAR extension.
 ### 安装
 
 * 将插件程序目录复制到Roundcube插件目录`plugins/`。
-* 修改Roundcube配置文件`config/config.inc.php`中参数`$config['plugins'] =`，添加 'force_password_change' 启用插件。
+* 修改Roundcube配置文件`config/config.inc.php`中参数`$config['plugins'] =`，添加 `'force_password_change'` 启用插件。
 
 __提醒__: 本插件需依赖于系统自带 `password` 插件，请务必同时启用。
 
 ### 配置
 
-复制config.inc.php.dist为config.inc.php，然后根据需要修改参数即可。
+复制`config.inc.php.dist`为`config.inc.php`，然后根据需要修改参数即可。
