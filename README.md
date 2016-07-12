@@ -11,9 +11,6 @@ it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-@version @package_version@
-@author WAINLAKE <michael@wainlake.com>
-
 ## How it works
 
 Each time user changed password, Roundcube will update user's password and
