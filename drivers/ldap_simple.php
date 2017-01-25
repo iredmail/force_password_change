@@ -22,7 +22,7 @@ class ldap_simple_driver
         if ($this->connect($rcmail)) {
             $ds = $this->ds;
             $user_dn = $this->user_dn;
-            $entry['shadowLastChange'] = (int)(strtotime($time) / 86400);
+            $entry['shadowlastchange'] = (int)(strtotime($time) / 86400);
 
             if (!ldap_modify($ds, $user_dn, $entry)) {
                 ldap_unbind($ds);
@@ -39,11 +39,11 @@ class ldap_simple_driver
             $ds = $this->ds;
             $basedn = $rcmail->config->get('password_ldap_basedn');
             $filter = '(mail=' . $_SESSION['username'] . ' *)';
-            $entry = array("shadowLastChange");
+            $entry = array("shadowlastchange");
 
             $sr = ldap_search($ds, $basedn, $filter, $entry);
             $attr = ldap_get_entries($ds, $sr);
-            $lastchange = $attr[0]['shadowLastChange'][0];
+            $lastchange = $attr[0]['shadowlastchange'][0];
 
             ldap_unbind($ds);
 
