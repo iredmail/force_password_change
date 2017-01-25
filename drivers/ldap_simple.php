@@ -14,7 +14,7 @@
  */
 class ldap_simple_driver
 {
-	private $debug = false;
+    private $debug = false;
     private $ds = '';
     private $user_dn = '';
 
@@ -45,7 +45,7 @@ class ldap_simple_driver
             $sr = ldap_search($ds, $basedn, $filter, $entry);
             $attr = ldap_get_entries($ds, $sr);
 			
-			$this->_debug("force_password_change ldap_get_entries:".implode(',',$attr[0]));
+            $this->_debug("force_password_change ldap_get_entries:".serialize($attr));
 			
             $lastchange = $attr[0]['shadowlastchange'][0];
 
