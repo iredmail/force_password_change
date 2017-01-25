@@ -124,7 +124,7 @@ class ldap_simple_driver
         return $str;
     }
 	
-	 /**
+    /**
      * Prints debug info to the log
      */
     private function _debug($str)
