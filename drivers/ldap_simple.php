@@ -14,6 +14,7 @@
  */
 class ldap_simple_driver
 {
+	private $debug = false;
     private $ds = '';
     private $user_dn = '';
 
@@ -43,6 +44,9 @@ class ldap_simple_driver
 
             $sr = ldap_search($ds, $basedn, $filter, $entry);
             $attr = ldap_get_entries($ds, $sr);
+			
+			$this->_debug("force_password_change ldap_get_entries:".implode(',',$attr[0]));
+			
             $lastchange = $attr[0]['shadowlastchange'][0];
 
             ldap_unbind($ds);
@@ -118,5 +122,15 @@ class ldap_simple_driver
         }
 
         return $str;
+    }
+	
+	 /**
+     * Prints debug info to the log
+     */
+    private function _debug($str)
+    {
+        if ($this->debug) {
+            rcube::write_log('ldap', $str);
+        }
     }
 }
