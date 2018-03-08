@@ -44,6 +44,8 @@ class ldap_simple_driver
 
             if (!$sr = ldap_search($ds, $basedn, $filter, $entry)) {
                 $this->_debug("force_password_change ldap_search:".ldap_error($ds));
+                $this->_debug("force_password_change ldap_search_basedn:".$basedn);
+                $this->_debug("force_password_change ldap_search_filter:".$filter);
                 return 0;
             }
             
