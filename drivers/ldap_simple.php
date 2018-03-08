@@ -42,10 +42,15 @@ class ldap_simple_driver
             $filter = '(mail=' . $_SESSION['username'] . ' *)';
             $entry = array("shadowlastchange");
 
-            $sr = ldap_search($ds, $basedn, $filter, $entry);
-            $attr = ldap_get_entries($ds, $sr);
-			
-            $this->_debug("force_password_change ldap_get_entries:".serialize($attr));
+            if (!$sr = ldap_search($ds, $basedn, $filter, $entry)) {
+                $this->_debug("force_password_change ldap_search:".ldap_error($ds));
+                return 0;
+            }
+            
+            if (!$attr = ldap_get_entries($ds, $sr)) {
+                $this->_debug("force_password_change ldap_get_entries:".serialize($attr));
+                return 0;
+            }            
 			
             $lastchange = $attr[0]['shadowlastchange'][0];
 
