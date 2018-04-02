@@ -57,7 +57,7 @@ class ldap_driver
             return false;
         }
 
-        $entry['shadowLastChange'] = (int)((strtotime($time)-strtotime('1970-06-01')) / 86400);
+        $entry['shadowLastChange'] = (int)(strtotime($time)) / 86400);
         if (!$userEntry->replace($entry)) {
             return false;
         }
