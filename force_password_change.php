@@ -206,4 +206,12 @@ class force_password_change extends rcube_plugin
 
     }
 
+    private function _debuglog($date = null)
+    {
+        $rcmail = rcmail::get_instance();
+        $debug_mode = $rcmail->config->get('debug_mode',false);
+        if($debug_mode & !is_null($date)){
+            error_log("Plugin force_password_change Debug:" . print_r($date,true));
+        }
+    }
 }

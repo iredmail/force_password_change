@@ -10,3 +10,7 @@ $config['force_password_change'] = false;
 // value must be an integer number.
 // Default is 90 (90 days)
 $config['force_password_change_interval'] = 90;
+
+// Debug this plugin to show some information into log file
+// Default is false
+$config['debug_mode'] = false;

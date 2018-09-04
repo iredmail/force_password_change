@@ -18,6 +18,7 @@ class ldap_driver
     function save($rcmail, $time)
     {
         require_once 'Net/LDAP2.php';
+        _debuglog("call ldap_driver.save");
 
         $userDN = $this->substitute_vars($rcmail->config->get('password_ldap_userDN_mask'));
 
@@ -51,6 +52,7 @@ class ldap_driver
         if (is_a($ldap, 'PEAR_Error')) {
             return false;
         }
+        _debuglog("ldap connect ready");
 
         $userEntry = $ldap->getEntry($userDN);
         if (Net_LDAP2::isError($userEntry)) {
@@ -67,6 +69,9 @@ class ldap_driver
             return false;
         }
 
+        _debuglog("write to ldap ");
+        _debuglog($entry);
+
         return true;
 
     }
@@ -74,6 +79,7 @@ class ldap_driver
     function get($rcmail)
     {
         require_once 'Net/LDAP2.php';
+        _debuglog("call ldap_driver.get");
 
         $userDN = $this->substitute_vars($rcmail->config->get('password_ldap_userDN_mask'));
 
@@ -107,6 +113,7 @@ class ldap_driver
         if (is_a($ldap, 'PEAR_Error')) {
             return false;
         }
+        _debuglog("ldap connect ready");
 
         $filter = '(mail=' . $_SESSION['username'] . '*)';
         $options = array(
@@ -127,6 +134,9 @@ class ldap_driver
             $ldap->done();
             $lastchange = $userEntry->getValue('shadowLastChange') * 86400;
         }
+
+        _debuglog("get from ldap ");
+        _debuglog($userEntry);
 
         return $lastchange;
     }

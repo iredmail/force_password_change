@@ -20,6 +20,7 @@ class ldap_simple_driver
 
     function save($rcmail, $time)
     {
+        _debuglog("call ldap_simple_driver.save");
         if ($this->connect($rcmail)) {
             $ds = $this->ds;
             $user_dn = $this->user_dn;
@@ -29,6 +30,9 @@ class ldap_simple_driver
                 ldap_unbind($ds);
                 return false;
             }
+            _debuglog("write to ldap ");
+            _debuglog($entry);
+
             ldap_unbind($ds);
         }
         return true;
@@ -36,6 +40,7 @@ class ldap_simple_driver
 
     function get($rcmail)
     {
+        _debuglog("call ldap_simple_driver.get");
         if ($this->connect($rcmail)) {
             $ds = $this->ds;
             $basedn = $rcmail->config->get('password_ldap_basedn');
@@ -55,6 +60,9 @@ class ldap_simple_driver
             }            
 			
             $lastchange = $attr[0]['shadowLastChange'][0];
+
+            _debuglog("get from ldap ");
+            _debuglog($attr);
 
             ldap_unbind($ds);
 
