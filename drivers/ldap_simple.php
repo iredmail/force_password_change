@@ -48,14 +48,14 @@ class ldap_simple_driver
             $entry = array("shadowLastChange");
 
             if (!$sr = ldap_search($ds, $basedn, $filter, $entry)) {
-                $this->_debug("force_password_change ldap_search:".ldap_error($ds));
-                $this->_debug("force_password_change ldap_search_basedn:".$basedn);
-                $this->_debug("force_password_change ldap_search_filter:".$filter);
+                $this->_debuglog("force_password_change ldap_search:".ldap_error($ds));
+                $this->_debuglog("force_password_change ldap_search_basedn:".$basedn);
+                $this->_debuglog("force_password_change ldap_search_filter:".$filter);
                 return 0;
             }
             
             if (!$attr = ldap_get_entries($ds, $sr)) {
-                $this->_debug("force_password_change ldap_get_entries:".serialize($attr));
+                $this->_debuglog("force_password_change ldap_get_entries:".serialize($attr));
                 return 0;
             }            
 			
@@ -138,14 +138,11 @@ class ldap_simple_driver
 
         return $str;
     }
-	
-    /**
-     * Prints debug info to the log
-     */
-    private function _debug($str)
+
+    private function _debuglog($data = null)
     {
-        if ($this->debug) {
-            rcube::write_log('ldap', $str);
+        if ($this->debug & !is_null($data)) {
+            error_log("Plugin force_password_change Debug:" . print_r($data,true));            ;
         }
     }
 }

@@ -14,6 +14,8 @@
  */
 class sql_driver
 {
+    private $debug = false;
+
     function save($rcmail,$time)
     {
         _debuglog("call sql_driver.save");
@@ -41,5 +43,12 @@ class sql_driver
         _debuglog($sql_arr);
 
         return 0;
+    }
+
+    private function _debuglog($data = null)
+    {
+        if ($this->debug & !is_null($data)) {
+            error_log("Plugin force_password_change Debug:" . print_r($data,true));            ;
+        }
     }
 }

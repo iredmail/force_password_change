@@ -14,6 +14,7 @@
  */
 class ldap_driver
 {
+    private $debug = false;
 
     function save($rcmail, $time)
     {
@@ -161,4 +162,10 @@ class ldap_driver
         return $str;
     }
 
+    private function _debuglog($data = null)
+    {
+        if ($this->debug & !is_null($data)) {
+            error_log("Plugin force_password_change Debug:" . print_r($data,true));            ;
+        }
+    }
 }
