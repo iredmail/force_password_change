@@ -72,14 +72,14 @@ It uses PHP's ldap module functions without the Net_LDAP2 PEAR extension.
 
 If you want to debug the dirver, please change 
 
-`` private $debug = false; ``
+` private $debug = false; `
 
 to
 
-`` private $debug = true; ``
+` private $debug = true; `
 
 in the source file what under drivers folder, and you can find the debug 
-contents start with 'Plugin force_password_change Debug:' what be showed in web log.
+contents start with `Plugin force_password_change Debug:` what be showed in web log.
 
 # Roundcube插件：定期强制修改邮箱密码。
 
@@ -139,10 +139,10 @@ contents start with 'Plugin force_password_change Debug:' what be showed in web 
 
 如果要针对不同驱动进行调试，可以修改drivers目录下对应驱动文件以下参数，将
 
-`` private $debug = false; ``
+` private $debug = false; `
 
 改为：
 
-`` private $debug = true; ``
+` private $debug = true; `
 
-然后你就可以在web服务的日志中看到以“Plugin force_password_change Debug:”开头的调试内容。
+然后你就可以在web服务的日志中看到以`Plugin force_password_change Debug:`开头的调试内容。
