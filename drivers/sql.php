@@ -47,7 +47,7 @@ class sql_driver
 
     private function _debuglog($data = null)
     {
-        if ($this->debug & !is_null($data)) {
+        if ($this->debug && !is_null($data)) {
             error_log("Plugin force_password_change Debug:" . print_r($data,true));            ;
         }
     }
