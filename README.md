@@ -68,6 +68,15 @@ For OpenLDAP or OpenBSD ldapd(8) servers.
 
 It uses PHP's ldap module functions without the Net_LDAP2 PEAR extension.
 
+#### DEBUG
+
+If you want to debug the dirver, please change 
+
+``private $debug = false;``
+to
+``private $debug = true;``
+
+in the source file what under drivers folder, and you can find the log what be showed in web log.
 
 # Roundcube插件：定期强制修改邮箱密码。
 
