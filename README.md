@@ -72,11 +72,11 @@ It uses PHP's ldap module functions without the Net_LDAP2 PEAR extension.
 
 If you want to debug the dirver, please change 
 
-```private $debug = false;```
+`` ` ``private $debug = false;```
 
 to
 
-```private $debug = true;```
+```private $debug = true;`` ` ``
 
 in the source file what under drivers folder, and you can find the log what be showed in web log.
 
