@@ -78,7 +78,8 @@ to
 
 `` private $debug = true; ``
 
-in the source file what under drivers folder, and you can find the log what be showed in web log.
+in the source file what under drivers folder, and you can find the debug 
+contents start with 'Plugin force_password_change Debug:' what be showed in web log.
 
 # Roundcube插件：定期强制修改邮箱密码。
 
@@ -112,3 +113,36 @@ in the source file what under drivers folder, and you can find the log what be s
 ### 配置
 
 复制`config.inc.php.dist`为`config.inc.php`，然后根据需要修改参数即可。
+
+
+### 插件驱动
+
+插件驱动用于查询及更新密码最新更新日期，目前仅支持以下3种。
+
+#### 数据库 (sql)
+
+用户MySQL，MariaDB，PostgreSQL 后台。
+
+#### LDAP (ldap)
+
+用于OpenLDAP或OpenBSD ldapd(8) 服务。
+
+本驱动依赖PEAR::Net_LDAP2包。
+
+#### LDAP (ldap_simple) - 不依赖PEAR包
+
+用于OpenLDAP或OpenBSD ldapd(8) 服务。
+
+使用PHP的ldap模块功能，不需要依赖Net_LDAP2 PEAR扩展。
+
+#### 调试
+
+如果要针对不同驱动进行调试，可以修改drivers目录下对应驱动文件以下参数，将
+
+`` private $debug = false; ``
+
+改为：
+
+`` private $debug = true; ``
+
+然后你就可以在web服务的日志中看到以“Plugin force_password_change Debug:”开头的调试内容。
