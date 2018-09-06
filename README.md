@@ -79,7 +79,7 @@ to
 ` private $debug = true; `
 
 in the source file what under drivers folder, and you can find the debug 
-contents start with `Plugin force_password_change Debug:` what be showed in web log.
+contents start with `Plugin force_password_change Debug:` what be showed in your log.
 
 # Roundcube插件：定期强制修改邮箱密码。
 
@@ -145,4 +145,4 @@ contents start with `Plugin force_password_change Debug:` what be showed in web 
 
 ` private $debug = true; `
 
-然后你就可以在web服务的日志中看到以`Plugin force_password_change Debug:`开头的调试内容。
+然后你就可以在服务的日志中看到以`Plugin force_password_change Debug:`开头的调试内容。

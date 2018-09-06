@@ -16,7 +16,7 @@ class sql_driver
 {
     private $debug = false;
 
-    function save($rcmail,$time)
+    function save($rcmail, $time)
     {
         $this->_debuglog("call sql_driver.save");
         $dbh = $rcmail->get_dbh();
@@ -48,7 +48,7 @@ class sql_driver
     private function _debuglog($data = null)
     {
         if ($this->debug && !is_null($data)) {
-            error_log("Plugin force_password_change Debug: " . print_r($data,true));            ;
+            rcube::write_log('error', "Plugin force_password_change Debug: " . print_r($data, true));;
         }
     }
 }
