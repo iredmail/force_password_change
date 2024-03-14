@@ -59,7 +59,7 @@ class ldap_simple_driver
                 return 0;
             }
 
-            $lastchange = $attr[0]['shadowLastChange'][0];
+            $lastchange = $attr[0]['shadowlastchange'][0];
 
             $this->_debuglog("get from ldap ");
             $this->_debuglog($attr);
