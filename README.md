@@ -1,3 +1,5 @@
+All credit goes to @wainlake. Thanks to @ly020044 for the patches.
+
 # Roundcube plugin: Force password change.
 
 This plugin is designed for Roundcube webmail. Current version works for
