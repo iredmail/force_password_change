@@ -1,10 +1,8 @@
-All credit goes to @wainlake. Thanks to @ly020044 for the patches.
+All credit goes to [@wainlake](https://bitbucket.org/wainlake/force_password_change). Thanks to @ly020044 for the patches.
 
 # Roundcube plugin: Force password change.
 
-This plugin is designed for Roundcube webmail. Current version works for
-iRedMail only (check details below, it's possible to tweak it to work with
-your own Roundcube webmail setup).
+This plugin is designed for Roundcube webmail deployed by [iRedMail](https://www.iredmail.org).
 
 ## License
 
