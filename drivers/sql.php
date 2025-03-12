@@ -20,7 +20,7 @@ class sql_driver
     {
         $this->_debuglog("call sql_driver.save");
         $dbh = $rcmail->get_dbh();
-        $res = $dbh->query('UPDATE vmail.mailbox SET passwordlastchange = ? WHERE username = ?', $time, $_SESSION['username']);
+        $res = $dbh->query('UPDATE vmail.mailbox SET passwordlastchange = NOW() WHERE username = ?', $_SESSION['username']);
         if (!$dbh->is_error()) {
             return true;
         }
