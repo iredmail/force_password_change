@@ -24,12 +24,11 @@ the last password change date in SQL database or LDAP.
     * update password change date in attribute `shadowLastChange` (days since
       Jun 1, 1970).
 
-Each time user login to Roundcube webmail, Roundcube will query the password
-last change date, if the password hasn't been changed for `90` days
-(configurable in plugin config file `config.inc.php`, parameter
-`force_password_change_interval`), Roundcube will __ALWAYS__ redirect user to
-`Password` page (offered by official Roundcube plugin `password`) until user
-changed the password.
+Each time user logs in, Roundcube queries the password last change date, and
+if not changed in certain days (configurable in plugin config file
+`config.inc.php`, parameter `force_password_change_interval`), Roundcube will
+__ALWAYS__ redirect this user to `Password` page (offered by official
+Roundcube plugin `password`) until he/she changed the password.
 
 ## Install and Configuration
 
@@ -78,5 +77,5 @@ to
 
 ` private $debug = true; `
 
-in the source file what under drivers folder, and you can find the debug 
-contents start with `Plugin force_password_change Debug:` what be showed in your log.
+in the source file under `drivers/` folder, it logs to Roundcube log file with
+prefix `Plugin force_password_change Debug:`.
